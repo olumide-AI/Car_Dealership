@@ -12,16 +12,17 @@ public class Vehicle {
     private double price;
 
     //Constructor to create objects, setting all fields
-    public Vehicle(int vin, String make, int year, String model, String vehicleType, int odometer, String color, double price) {
+    public Vehicle(int vin, int year, String make, String model, String vehicleType, String color, int odometer, double price) {
         this.vin = vin;
-        this.make = make;
         this.year = year;
+        this.make = make;
         this.model = model;
         this.vehicleType = vehicleType;
-        this.odometer = odometer;
         this.color = color;
+        this.odometer = odometer;
         this.price = price;
     }
+
 
     //Getters and setters for all fields
 
@@ -90,7 +91,12 @@ public class Vehicle {
     }
 
     //toString method to print clean readable vehicle summary
+    @Override
     public String toString() {
-        return getMake() + " " + getModel() + " " + getYear() + " is a " + getColor() + " " + getVehicleType() +" having a total miles of: " + getOdometer() + "miles and cost: $" + getPrice() + ". The vin number is: " + getVin();
+        return String.format(
+                "VIN: %d | %d %s %s | Type: %s | Color: %s | Odometer: %,d miles | Price: $%,.2f",
+                vin, year, make, model, vehicleType, color, odometer, price
+        );
     }
+
 }
