@@ -86,7 +86,11 @@ public class Vehicle {
         return price;
     }
 
+    //Write defensive test for set Price
     public void setPrice(double price) {
+        if (price < 0){
+            throw new IllegalArgumentException("Price can't be negative.");
+        }
         this.price = price;
     }
 
