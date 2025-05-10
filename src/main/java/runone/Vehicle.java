@@ -91,6 +91,6 @@ public class Vehicle {
 
     //toString method to print clean readable vehicle summary
     public String toString() {
-        return getMake() + " " + getModel() + " " + getYear() + " is a " + getColor() + " " + getVehicleType() +" having a total miles of: " + getOdometer() + " and cost: " + getPrice() + ". The vin number is: " + getVin();
+        return getMake() + " " + getModel() + " " + getYear() + " is a " + getColor() + " " + getVehicleType() +" having a total miles of: " + getOdometer() + "miles and cost: $" + getPrice() + ". The vin number is: " + getVin();
     }
 }
