@@ -10,7 +10,7 @@ import java.util.List;
 public class DealershipFileManager {
     private static final String FILE_PATH = "inventory.csv";
 
-    public Dealership getDealership (String filename){
+    public static Dealership getDealership (String filename){
         //This initalization helps a lot with clean code
         Dealership dealership = null; //Declare dealership now to return later
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))){
