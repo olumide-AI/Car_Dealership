@@ -1,9 +1,6 @@
 package runone;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +19,9 @@ public class DealershipFileManager {
                 String address = dealershipHeader[1];
                 String phone = dealershipHeader[2];
 
-                dealership = new Dealership(name, address, phone);
+                dealership = new Dealership(name, address, phone + "\n");
             }
+
             while ((line = bufferedReader.readLine()) != null){
                 String[] splitEntries = line.split("\\|");
                 int vin = Integer.parseInt(splitEntries[0]);
@@ -45,9 +43,35 @@ public class DealershipFileManager {
         return dealership;
     }
 
-//    public Dealership saveDealership(Dealership dealership, String filename){
-//        try (FileWriter fileWriter = new FileWriter(FILE_PATH, true)){
-//
-//        }
-//    }
+    public static void saveDealership(Dealership dealership, String filename) {
+        File file = new File(filename);
+        boolean fileExists = file.exists();
+
+        try (FileWriter fileWriter = new FileWriter(file, true)) { // Always append
+
+            // Step 1: Only write dealership header if the file is new
+            if (!fileExists) {
+                String name = dealership.getName();
+                String address = dealership.getAddress();
+                String phone = dealership.getPhone();
+                fileWriter.write(name + "|" + address + "|" + phone + "\n");
+            }
+
+            // Step 2: Always write the vehicle data (appending)
+            List<Vehicle> vehicleList = dealership.getAllVehicles();
+            for (Vehicle vehicle : vehicleList) {
+                fileWriter.write(vehicle.getVin() + "|" +
+                        vehicle.getYear() + "|" +
+                        vehicle.getMake() + "|" +
+                        vehicle.getModel() + "|" +
+                        vehicle.getVehicleType() + "|" +
+                        vehicle.getColor() + "|" +
+                        vehicle.getOdometer() + "|" +
+                        vehicle.getPrice() + "\n");
+            }
+        } catch (IOException e) {
+            System.out.println("File writing error: Dealership not saved. " + e.getMessage());
+        }
+    }
+
 }
