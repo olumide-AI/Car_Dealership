@@ -41,5 +41,27 @@ public class Dealership {
     public List<Vehicle> getAllVehicles(){
          return new ArrayList<>(this.inventory);//Safe: changes affect the copy, not the original
     }
+
+    public List<Vehicle> getVehiclesByMakeModel(String query) {
+        List<Vehicle> results = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getMake().equalsIgnoreCase(query) || vehicle.getModel().equalsIgnoreCase(query)) {
+                results.add(vehicle);
+            }
+        }
+        return results;
+    }
+
+    public boolean removeVehicleByVin(int vin) {
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getVin() == vin) {
+                inventory.remove(vehicle);
+                return true;  // Successfully removed
+            }
+        }
+        return false;  // Vehicle not found
+    }
+
+
 }
 
