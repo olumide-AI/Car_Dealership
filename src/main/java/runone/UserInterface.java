@@ -27,7 +27,9 @@ public class UserInterface {
     //Load the dealership
     //Ask user for file name
     private void init(){
-        dealership = DealershipFileManager.getDealership("inventory.csv");
+        System.out.println("Enter inventory filename");
+        String filename = scanner.nextLine();
+        dealership = DealershipFileManager.getDealership(filename);
         if(dealership == null){
             System.out.println("Failed to load dealership data");
             System.exit(0);
