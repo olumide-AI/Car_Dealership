@@ -70,6 +70,9 @@ public class UserInterface {
             case 9:
                 processGetByMileageRequest();
                 break;
+            case 10:
+                processGetByVehicleTypeRequest ();
+                break;
             case 0:
                 saveAndExit();
                 return false;  // Exit the loop and stop the program
@@ -239,6 +242,21 @@ public class UserInterface {
             }
         } catch (NumberFormatException e) {
             System.out.println("Invalid input. Please enter valid numbers for mileage.");
+        }
+    }
+
+    private void processGetByVehicleTypeRequest (){
+        System.out.println("Please enter color to search");
+        String vehicleType = scanner.nextLine();
+        List<Vehicle> results = dealership.getVehiclesByVehicleType(vehicleType);
+        if(results.isEmpty()){
+            System.out.println("No vehicles has been found with this " + vehicleType + " request");
+        }
+        else{
+            System.out.println("Vehicles found with that vehicleType includes:");
+            for(Vehicle vehicle: results){
+                System.out.println(vehicle);
+            }
         }
     }
 

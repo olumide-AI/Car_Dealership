@@ -192,4 +192,23 @@ public class DealershipTest {
         assertEquals(12000, results.get(0).getOdometer());
         assertEquals(5000, results.get(1).getOdometer());
     }
+
+    @Test
+    public void testGetVehiclesByType() {
+        // Arrange
+        Dealership dealership = new Dealership("Test Dealership", "123 Main St", "555-1234");
+        dealership.addVehicle(new Vehicle(1001, 2020, "Toyota", "Camry", "Sedan", "Red", 15000, 25000));
+        dealership.addVehicle(new Vehicle(1002, 2019, "Honda", "Civic", "Sedan", "Blue", 12000, 20000));
+        dealership.addVehicle(new Vehicle(1003, 2018, "Toyota", "Corolla", "Sedan", "White", 30000, 18000));
+
+        // Act
+        List<Vehicle> results = dealership.getVehiclesByVehicleType("Sedan");
+
+        // Assert
+        assertEquals(3, results.size());
+        assertEquals("Sedan", results.get(0).getVehicleType());
+        assertEquals("Sedan", results.get(2).getVehicleType());
+
+
+    }
 }
