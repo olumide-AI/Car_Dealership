@@ -153,6 +153,7 @@ public class UserInterface {
         try{
             System.out.println("What is your min car price");
             double minPrice =  Double.parseDouble(scanner.nextLine());
+            System.out.println("What is your max car price ");
             double maxPrice = Double.parseDouble(scanner.nextLine());
             if (minPrice > maxPrice){
                 System.out.println("Minimum price can't be greater than maximum value");
