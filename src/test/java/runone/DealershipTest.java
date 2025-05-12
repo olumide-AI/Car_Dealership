@@ -54,6 +54,52 @@ public class DealershipTest {
         List<Vehicle> latestInventory = dealership.getAllVehicles();
         assertEquals(2, latestInventory.size()); //Clearing the returned list should not affect the dealership inventory.
     }
+    @Test
+    public void testGetVehiclesByMakeModel() {
+        // Arrange
+        Dealership dealership = new Dealership("Test Dealership", "123 Main St", "555-1234");
+        dealership.addVehicle(new Vehicle(1001, 2020, "Toyota", "Camry", "Sedan", "Red", 15000, 25000));
+        dealership.addVehicle(new Vehicle(1002, 2019, "Honda", "Civic", "Sedan", "Blue", 12000, 20000));
+        dealership.addVehicle(new Vehicle(1003, 2018, "Toyota", "Corolla", "Sedan", "White", 30000, 18000));
+
+        // Act
+        List<Vehicle> results = dealership.getVehiclesByMakeModel("Toyota");
+
+        // Assert
+        assertEquals(2, results.size());
+        assertEquals(1001, results.get(0).getVin());
+        assertEquals(1003, results.get(1).getVin());
+    }
+
+    @Test
+    public void testRemoveVehicleByVin() {
+        // Arrange
+        Dealership dealership = new Dealership("Test Dealership", "123 Main St", "555-1234");
+        dealership.addVehicle(new Vehicle(1001, 2020, "Toyota", "Camry", "Sedan", "Red", 15000, 25000));
+
+        // Act
+        boolean removed = dealership.removeVehicleByVin(1001);
+
+        // Assert
+        assertTrue(removed); // Vehicle should be  removed.
+        assertEquals(0, dealership.getAllVehicles().size()); // "Inventory should be empty after removal."
+    }
+
+    @Test
+    public void testRemoveVehicleByVin_NotFound() {
+        // Arrange
+        Dealership dealership = new Dealership("Test Dealership", "123 Main St", "555-1234");
+        dealership.addVehicle(new Vehicle(1001, 2020, "Toyota", "Camry", "Sedan", "Red", 15000, 25000));
+
+        // Act
+        boolean removed = dealership.removeVehicleByVin(9999);  // wrong VIN
+
+        // Assert
+        assertFalse(removed); //Vehicle removal should fail because VIN does not exist.
+        assertEquals(1, dealership.getAllVehicles().size()); //No change to inventory cause no removal happened
+    }
+
+
 
 
 }
