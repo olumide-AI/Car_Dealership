@@ -50,7 +50,7 @@ public class UserInterface {
                 listAllVehicles();
                 break;
             case 2:
-                searchVehicles();
+                processGetByMakeModelRequest ();
                 break;
             case 3:
                 addVehicle();
@@ -61,7 +61,13 @@ public class UserInterface {
             case 6:
                 processGetByPriceRequest();
                 break;
-            case 5:
+            case 7:
+                processGetByYearRequest();
+                break;
+            case 8:
+                processGetByColorRequest ();
+                break;
+            case 0:
                 saveAndExit();
                 return false;  // Exit the loop and stop the program
             default:
@@ -78,7 +84,7 @@ public class UserInterface {
         }
     }
 
-    private void searchVehicles (){
+    private void processGetByMakeModelRequest (){
         System.out.println("Enter make or model to search");
         String query = scanner.nextLine();
 
@@ -161,4 +167,48 @@ public class UserInterface {
         }
 
     }
+
+    private void processGetByYearRequest() {
+        try {
+            System.out.print("Enter minimum year: ");
+            int minYear = Integer.parseInt(scanner.nextLine());
+
+            System.out.print("Enter maximum year: ");
+            int maxYear = Integer.parseInt(scanner.nextLine());
+
+            if (minYear > maxYear) {
+                System.out.println("Minimum year cannot be greater than maximum year.");
+                return;
+            }
+
+            List<Vehicle> results = dealership.getVehiclesByYearRange(minYear, maxYear);
+
+            if (results.isEmpty()) {
+                System.out.println("No vehicles found within the specified year range.");
+            } else {
+                System.out.println("Vehicles found:");
+                for (Vehicle v : results) {
+                    System.out.println(v);
+                }
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter valid numeric years.");
+        }
+    }
+
+    private void processGetByColorRequest (){
+        System.out.println("Please enter color to search");
+        String color = scanner.nextLine();
+        List<Vehicle> results = dealership.getVehiclesByColor(color);
+        if(results.isEmpty()){
+            System.out.println("No vehicles has been found with this " + color + " request");
+        }
+        else{
+            System.out.println("Vehicles found with that color includes:");
+            for(Vehicle vehicle: results){
+                System.out.println(vehicle);
+            }
+        }
+    }
+
 }
