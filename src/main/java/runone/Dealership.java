@@ -61,6 +61,17 @@ public class Dealership {
         return false;  // Vehicle not found
     }
 
+    public List<Vehicle> getVehiclesByPriceRange(double minPrice, double maxPrice) {
+        List<Vehicle> results = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getPrice() >= minPrice && vehicle.getPrice() <= maxPrice) {
+                results.add(vehicle);
+            }
+        }
+        return results;
+    }
+
+
 
 }
 

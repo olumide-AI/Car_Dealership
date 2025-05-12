@@ -98,8 +98,47 @@ public class DealershipTest {
         assertFalse(removed); //Vehicle removal should fail because VIN does not exist.
         assertEquals(1, dealership.getAllVehicles().size()); //No change to inventory cause no removal happened
     }
+    @Test
+    public void testGetVehiclesByPriceRange_FindsMatchingVehicles() {
+        // Arrange
+        Dealership dealership = new Dealership("Test Dealership", "123 Main St", "555-1234");
+        dealership.addVehicle(new Vehicle(1001, 2020, "Toyota", "Camry", "Sedan", "Red", 15000, 25000));
+        dealership.addVehicle(new Vehicle(1002, 2019, "Honda", "Civic", "Sedan", "Blue", 12000, 20000));
+        dealership.addVehicle(new Vehicle(1003, 2018, "Ford", "Fusion", "Sedan", "Black", 30000, 18000));
+
+        // Act
+        List<Vehicle> results = dealership.getVehiclesByPriceRange(18000, 25000);
+
+        // Assert
+        assertEquals(3, results.size(), "Expected 3 vehicles in price range.");
+    }
+
+    @Test
+    public void testGetVehiclesByPriceRange_NoMatches() {
+        // Arrange
+        Dealership dealership = new Dealership("Test Dealership", "123 Main St", "555-1234");
+        dealership.addVehicle(new Vehicle(1001, 2020, "Toyota", "Camry", "Sedan", "Red", 15000, 25000));
+
+        // Act
+        List<Vehicle> results = dealership.getVehiclesByPriceRange(30000, 50000);  // No vehicles this expensive
+
+        // Assert
+        assertTrue(results.isEmpty(), "Expected no vehicles in this price range.");
+    }
+
+    @Test
+    public void testGetVehiclesByPriceRange_BoundaryCheck() {
+        // Arrange
+        Dealership dealership = new Dealership("Test Dealership", "123 Main St", "555-1234");
+        dealership.addVehicle(new Vehicle(1001, 2020, "Toyota", "Camry", "Sedan", "Red", 15000, 25000));
+
+        // Act
+        List<Vehicle> results = dealership.getVehiclesByPriceRange(25000, 25000);  // Exact match at upper boundary
+
+        // Assert
+        assertEquals(1, results.size(), "Expected exactly one vehicle matching the boundary price.");
+        assertEquals(1001, results.get(0).getVin());
 
 
-
-
+    }
 }

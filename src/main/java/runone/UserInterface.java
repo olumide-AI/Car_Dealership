@@ -58,6 +58,9 @@ public class UserInterface {
             case 4:
                 removeVehicle();
                 break;
+            case 6:
+                processGetByPriceRequest();
+                break;
             case 5:
                 saveAndExit();
                 return false;  // Exit the loop and stop the program
@@ -131,5 +134,31 @@ public class UserInterface {
     private void saveAndExit() {
         DealershipFileManager.saveDealership(dealership, "inventory.csv");
         System.out.println("Dealership saved. Exiting program.");
+    }
+
+    private void processGetByPriceRequest() {
+        try{
+            System.out.println("What is your min car price");
+            double minPrice =  Double.parseDouble(scanner.nextLine());
+            double maxPrice = Double.parseDouble(scanner.nextLine());
+            if (minPrice > maxPrice){
+                System.out.println("Minimum price can't be greater than maximum value");
+                System.exit(0);
+            }
+            List<Vehicle> results = dealership.getVehiclesByPriceRange(minPrice, maxPrice);
+            if(results.isEmpty()){
+                System.out.println("No vehicles found within that price range");
+            }
+            else {
+                System.out.println("Vehciles found below");
+                for(Vehicle vehicle: results){
+                    System.out.println(vehicle);
+                }
+            }
+        }
+        catch (NumberFormatException e){
+            System.out.println("Invalid input. Please enter a number ");
+        }
+
     }
 }
