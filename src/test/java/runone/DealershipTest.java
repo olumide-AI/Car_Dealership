@@ -158,4 +158,21 @@ public class DealershipTest {
         assertEquals(1002, results.get(0).getVin(), "First vehicle should have VIN 1002.");
         assertEquals(1003, results.get(1).getVin(), "Second vehicle should have VIN 1003.");
     }
+
+    @Test
+    public void testGetVehiclesColor() {
+        // Arrange
+        Dealership dealership = new Dealership("Test Dealership", "123 Main St", "555-1234");
+        dealership.addVehicle(new Vehicle(1001, 2020, "Toyota", "Camry", "Sedan", "Red", 15000, 25000));
+        dealership.addVehicle(new Vehicle(1002, 2019, "Honda", "Civic", "Sedan", "Blue", 12000, 20000));
+        dealership.addVehicle(new Vehicle(1003, 2018, "Toyota", "Corolla", "Sedan", "White", 30000, 18000));
+
+        // Act
+        List<Vehicle> results = dealership.getVehiclesByColor("Red");
+
+        // Assert
+        assertEquals(1, results.size());
+        assertEquals("Red", results.get(0).getColor());
+
+    }
 }
