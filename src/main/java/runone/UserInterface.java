@@ -7,6 +7,7 @@ public class UserInterface {
     //Fields
     //Holds the current dealership the user is working with.
     private Dealership dealership;
+    private String filename;
     private Scanner scanner = new Scanner(System.in);
 
     //Methods
@@ -28,7 +29,7 @@ public class UserInterface {
     //Ask user for file name
     private void init(){
         System.out.println("Enter inventory filename");
-        String filename = scanner.nextLine();
+        filename = scanner.nextLine();
         dealership = DealershipFileManager.getDealership(filename);
         if(dealership == null){
             System.out.println("Failed to load dealership data");
@@ -42,7 +43,12 @@ public class UserInterface {
         System.out.println("2. Search Vehicles by Make/Model");
         System.out.println("3. Add a Vehicle");
         System.out.println("4. Remove a Vehicle");
-        System.out.println("5. Save and Exit");
+        System.out.println("5. Search by Price Range");
+        System.out.println("6. Search by Year Range");
+        System.out.println("7. Search by Color");
+        System.out.println("8. Search by Mileage Range");
+        System.out.println("9. Search by Vehicle Type");
+        System.out.println("0. Save and Exit");
     }
     private boolean processUserSelection(int choice){
         switch (choice) {
@@ -58,19 +64,19 @@ public class UserInterface {
             case 4:
                 removeVehicle();
                 break;
-            case 6:
+            case 5:
                 processGetByPriceRequest();
                 break;
-            case 7:
+            case 6:
                 processGetByYearRequest();
                 break;
-            case 8:
+            case 7:
                 processGetByColorRequest ();
                 break;
-            case 9:
+            case 8:
                 processGetByMileageRequest();
                 break;
-            case 10:
+            case 9:
                 processGetByVehicleTypeRequest ();
                 break;
             case 0:
@@ -141,11 +147,6 @@ public class UserInterface {
         } else {
             System.out.println("Vehicle not found.");
         }
-    }
-
-    private void saveAndExit() {
-        DealershipFileManager.saveDealership(dealership, "inventory.csv");
-        System.out.println("Dealership saved. Exiting program.");
     }
 
     private void processGetByPriceRequest() {
@@ -246,7 +247,7 @@ public class UserInterface {
     }
 
     private void processGetByVehicleTypeRequest (){
-        System.out.println("Please enter color to search");
+        System.out.println("Please enter vehicle type to search");
         String vehicleType = scanner.nextLine();
         List<Vehicle> results = dealership.getVehiclesByVehicleType(vehicleType);
         if(results.isEmpty()){
@@ -258,6 +259,12 @@ public class UserInterface {
                 System.out.println(vehicle);
             }
         }
+    }
+
+    private void saveAndExit() {
+        DealershipFileManager.saveDealership(dealership, filename);
+        System.out.println("Dealership saved. Exiting program.");
+        System.out.println("Dealership saved to " + filename + ". Exiting application");
     }
 
 
