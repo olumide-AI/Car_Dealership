@@ -67,6 +67,9 @@ public class UserInterface {
             case 8:
                 processGetByColorRequest ();
                 break;
+            case 9:
+                processGetByMileageRequest();
+                break;
             case 0:
                 saveAndExit();
                 return false;  // Exit the loop and stop the program
@@ -210,5 +213,34 @@ public class UserInterface {
             }
         }
     }
+
+    private void processGetByMileageRequest() {
+        try {
+            System.out.print("Enter minimum mileage: ");
+            int minMileage = Integer.parseInt(scanner.nextLine());
+
+            System.out.print("Enter maximum mileage: ");
+            int maxMileage = Integer.parseInt(scanner.nextLine());
+
+            if (minMileage > maxMileage) {
+                System.out.println("Minimum mileage cannot be greater than maximum mileage.");
+                return;
+            }
+
+            List<Vehicle> results = dealership.getVehiclesByMileageRange(minMileage, maxMileage);
+
+            if (results.isEmpty()) {
+                System.out.println("No vehicles found within the specified mileage range.");
+            } else {
+                System.out.println("Vehicles found:");
+                for (Vehicle v : results) {
+                    System.out.println(v);
+                }
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter valid numbers for mileage.");
+        }
+    }
+
 
 }

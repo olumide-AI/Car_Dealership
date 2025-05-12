@@ -175,4 +175,21 @@ public class DealershipTest {
         assertEquals("Red", results.get(0).getColor());
 
     }
+
+    @Test
+    public void testGetVehiclesByMileageRange() {
+        // Arrange: Create dealership and add vehicles
+        Dealership dealership = new Dealership("Test Dealership", "123 Main St", "555-1234");
+        dealership.addVehicle(new Vehicle(1001, 2018, "Toyota", "Camry", "Sedan", "Red", 15000, 25000));
+        dealership.addVehicle(new Vehicle(1002, 2020, "Honda", "Civic", "Sedan", "Blue", 12000, 20000));
+        dealership.addVehicle(new Vehicle(1003, 2022, "Ford", "Fusion", "Sedan", "Black", 5000, 30000));
+
+        // Act: Search for vehicles between 2019 and 2022 (should find 2020 and 2022 models)
+        List<Vehicle> results = dealership.getVehiclesByMileageRange(5000, 12000);
+
+        // Assert: Expect 2 results
+        assertEquals(2, results.size());
+        assertEquals(12000, results.get(0).getOdometer());
+        assertEquals(5000, results.get(1).getOdometer());
+    }
 }
