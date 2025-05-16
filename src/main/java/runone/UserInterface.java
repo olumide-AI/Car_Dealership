@@ -48,6 +48,7 @@ public class UserInterface {
         System.out.println("7. Search by Color");
         System.out.println("8. Search by Mileage Range");
         System.out.println("9. Search by Vehicle Type");
+        System.out.println("10. Sell or Lease a vehicle");
         System.out.println("0. Save and Exit");
     }
     private boolean processUserSelection(int choice){
@@ -78,6 +79,9 @@ public class UserInterface {
                 break;
             case 9:
                 processGetByVehicleTypeRequest ();
+                break;
+            case 10:
+                sellOrLeaseVehicle();
                 break;
             case 0:
                 saveAndExit();
@@ -272,5 +276,52 @@ public class UserInterface {
         System.out.println("Dealership saved to " + filename + ". Exiting application");
     }
 
+    private void sellOrLeaseVehicle(){
 
+        System.out.println("What is the vin of the vehicle you want to sell or lease ");
+        String userVin = scanner.nextLine();
+        Vehicle userVehicleChoice = null;
+        for (Vehicle vehicle: dealership.getInventory()) {
+            if (vehicle.getVin().equalsIgnoreCase(userVin)) {
+                userVehicleChoice = vehicle;
+                break;
+            }
+        }
+            if(userVehicleChoice == null){
+                System.out.println("Vehicle with " + userVin + "not found. ");
+                return;
+            }
+
+        // Get customer info
+        System.out.print("Please enter your name: ");
+        String customerName = scanner.nextLine();
+
+        System.out.print("Please enter your email: ");
+        String customerEmail = scanner.nextLine();
+
+        System.out.print("Enter today's date (YYYY-MM-DD): ");
+        String date = scanner.nextLine();
+
+        // Ask for contract type
+        System.out.print("Is this a SALE or LEASE? ");
+        String contractType = scanner.nextLine().trim().toUpperCase();
+
+        //Decide which contract to create
+        Contract contract = null;
+        if (contractType.equalsIgnoreCase("SALE")){
+             contract = new SalesContract(date, customerName,customerEmail, userVehicleChoice,dealership.getAllVehicles(),0);
+        } else if (contractType.equalsIgnoreCase("LEASE")) {
+             contract = new LeaseContract(date, customerName, customerEmail, userVehicleChoice, dealership.getAllVehicles());
+        }
+        else{
+            System.out.println("Invalid contract type");
+            return;
+        }
+        // Save contract and remove vehicle
+        ContractDataManager.saveContract(contract);
+        dealership.removeVehicleByVin(userVehicleChoice.getVin());
+
+        System.out.println("Contract processed and vehicle removed from inventory.");
+    }
 }
+
