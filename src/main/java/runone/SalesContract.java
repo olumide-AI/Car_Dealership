@@ -1,6 +1,5 @@
 package runone;
 
-import javax.swing.plaf.PanelUI;
 import java.util.List;
 
 public class SalesContract extends Contract {
