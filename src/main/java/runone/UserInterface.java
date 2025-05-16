@@ -108,7 +108,7 @@ public class UserInterface {
 
     private void addVehicle(){
         System.out.print("Enter VIN: ");
-        int vin = Integer.parseInt(scanner.nextLine());
+        String vin = (scanner.nextLine());
 
         System.out.print("Enter Year: ");
         int year = Integer.parseInt(scanner.nextLine());
@@ -139,7 +139,7 @@ public class UserInterface {
 
     private void removeVehicle() {
         System.out.print("Enter VIN of vehicle to remove: ");
-        int vin = Integer.parseInt(scanner.nextLine());
+        String vin = scanner.nextLine();
 
         boolean removed = dealership.removeVehicleByVin(vin);
         if (removed) {

@@ -57,15 +57,10 @@ public class Dealership {
         return results;
     }
 
-    public boolean removeVehicleByVin(int vin) {
-        for (int i = 0; i < inventory.size(); i++){
-            if (inventory.get(i).getVin() == vin){
-                inventory.remove(i);
-                return true;  // Successfully removed
-            }
-        }
-        return false;  // Vehicle not found
+    public boolean removeVehicleByVin(String vin) {
+        return inventory.removeIf(vehicle -> vehicle.getVin().equalsIgnoreCase(vin));
     }
+
 
     public List<Vehicle> getVehiclesByPriceRange(double minPrice, double maxPrice) {
         List<Vehicle> results = new ArrayList<>();
