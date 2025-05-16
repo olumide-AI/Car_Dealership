@@ -1,5 +1,8 @@
 package runone;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Contract {
     //Fields
     private String date;
@@ -9,11 +12,14 @@ public abstract class Contract {
     private double totalPrice;
     private double monthlyPayment;
 
+    List<Vehicle> vehicleList = new ArrayList<>();
+
     //Constructors
 
-    public Contract(String date, String customerName, String customerEmail, int vehicleSold) {
+    public Contract(String date, String customerName, String customerEmail, int vehicleSold, List<Vehicle> vehicleList) {
         this.date = date;
         this.customerName = customerName;
+        this.vehicleList = vehicleList;
         CustomerEmail = customerEmail;
         VehicleSold = vehicleSold;
     }
