@@ -49,6 +49,7 @@ public class UserInterface {
         System.out.println("8. Search by Mileage Range");
         System.out.println("9. Search by Vehicle Type");
         System.out.println("10. Sell or Lease a vehicle");
+        System.out.println("11. View all Contracts");
         System.out.println("0. Save and Exit");
     }
     private boolean processUserSelection(int choice){
@@ -82,6 +83,9 @@ public class UserInterface {
                 break;
             case 10:
                 sellOrLeaseVehicle();
+                break;
+            case 11:
+                displayAllContracts();
                 break;
             case 0:
                 saveAndExit();
@@ -323,5 +327,24 @@ public class UserInterface {
 
         System.out.println("Contract processed and vehicle removed from inventory.");
     }
-}
+    private void displayAllContracts() {
+        List<Contract> contracts = ContractDataManager.loadAllContracts();
 
+        if (contracts.isEmpty()) {
+            System.out.println("No contracts found.");
+            return;
+        }
+
+        for (Contract contract : contracts) {
+            System.out.println("---- Contract ----");
+            System.out.println("Date: " + contract.getDate());
+            System.out.println("Customer: " + contract.getCustomerName());
+            System.out.println("Email: " + contract.getCustomerEmail());
+            System.out.println("Vehicle: " + contract.getVehicleSold());
+            System.out.println("Total Price: $" + String.format("%.2f", contract.getTotalPrice()));
+            System.out.println("Monthly Payment: $" + String.format("%.2f", contract.getMonthlyPayment()));
+            System.out.println();
+        }
+    }
+
+}
