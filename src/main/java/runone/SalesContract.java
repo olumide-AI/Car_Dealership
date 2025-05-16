@@ -4,9 +4,9 @@ import java.util.List;
 
 public class SalesContract extends Contract {
     private double salesTaxAmount;
-    private static final double recordingFee = 100;
+    private static final double RECORDING_FEE = 100;
 
-    public SalesContract(String date, String customerName, String customerEmail, int vehicleSold, List<Vehicle> vehicleList, double salesTaxAmount) {
+    public SalesContract(String date, String customerName, String customerEmail, Vehicle vehicleSold, List<Vehicle> vehicleList, double salesTaxAmount) {
         super(date, customerName, customerEmail, vehicleSold, vehicleList);
         this.salesTaxAmount = calculateSalesTax();
     }
@@ -18,11 +18,7 @@ public class SalesContract extends Contract {
     }
 
     public double originalPrice(){
-        double vehiclePrice = 0;
-        for(Vehicle vehicle: vehicleList){
-            vehiclePrice += vehicle.getPrice();
-        }
-        return vehiclePrice;
+        return getVehicleSold().getPrice();
     }
 
     public double processingFee(){
@@ -37,7 +33,7 @@ public class SalesContract extends Contract {
     @Override
     public double getTotalPrice(){
 
-        return originalPrice() + calculateSalesTax() + processingFee() + recordingFee;
+        return originalPrice() + calculateSalesTax() + processingFee() + RECORDING_FEE;
     }
 
     @Override
