@@ -8,7 +8,7 @@ public class UserInterface {
     //Holds the current dealership the user is working with.
     private Dealership dealership;
     private String filename;
-    private Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     //Methods
     public void display(){
@@ -30,7 +30,7 @@ public class UserInterface {
     private void init(){
         System.out.println("Enter inventory filename");
         filename = scanner.nextLine();
-        dealership = DealershipFileManager.getDealership(filename);
+        this.dealership = DealershipFileManager.getDealership(filename);
         if(dealership == null){
             System.out.println("Failed to load dealership data");
             System.exit(0);
@@ -132,7 +132,7 @@ public class UserInterface {
         double price = Double.parseDouble(scanner.nextLine());
 
         Vehicle newVehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
-        dealership.addVehicle(newVehicle);
+        this.dealership.addVehicle(newVehicle);
 
         System.out.println("Vehicle added successfully.");
     }

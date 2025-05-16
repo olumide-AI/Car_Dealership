@@ -8,6 +8,7 @@ public class Dealership {
     private String name;
     private String address;
     private  String phone;
+
     private List<Vehicle> inventory;
 
     //Constructor
@@ -33,6 +34,10 @@ public class Dealership {
         return phone;
     }
 
+    public List<Vehicle> getInventory() {
+        return inventory;
+    }
+
     //Methods
     public void addVehicle (Vehicle vehicle){
         inventory.add(vehicle);
@@ -55,6 +60,7 @@ public class Dealership {
     public boolean removeVehicleByVin(int vin) {
         for (int i = 0; i < inventory.size(); i++){
             if (inventory.get(i).getVin() == vin){
+                inventory.remove(i);
                 return true;  // Successfully removed
             }
         }
