@@ -29,4 +29,23 @@ public class LeaseContract extends Contract{
         //totalprice * (1+0.04)/36
         return getTotalPrice() * (1+0.04)/36;
     }
+    public String toFileString(){
+        Vehicle vehicle = getVehicleSold();
+        return "LEASE|" + getDate() + "|" +
+                getCustomerName() + "|" +
+                getCustomerEmail() + "|" +
+                vehicle.getVin() + "|" +
+                vehicle.getYear() + "|" +
+                vehicle.getMake() + "|" +
+                vehicle.getModel() + "|" +
+                vehicle.getVehicleType() + "|" +
+                vehicle.getColor() + "|" +
+                vehicle.getOdometer() + "|" +
+                String.format("%.2f", vehicle.getPrice()) + "|" +
+                String.format("%.2f", getExpectedEndingValue()) + "|" +
+                String.format("%.2f",getLeaseFee()) + "|" +
+                String.format("%.2f", getTotalPrice()) + "|" +
+                "YES|" + // financed
+                String.format("%.2f", getMonthlyPayment());
+    }
 }

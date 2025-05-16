@@ -62,4 +62,7 @@ public abstract class Contract {
     public abstract double getTotalPrice();
 
     public abstract double getMonthlyPayment();
+
+    //Create a to file string method
+    public abstract String toFileString();
 }

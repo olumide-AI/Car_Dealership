@@ -1,5 +1,6 @@
 package runone;
 
+import javax.swing.plaf.PanelUI;
 import java.util.List;
 
 public class SalesContract extends Contract {
@@ -45,4 +46,26 @@ public class SalesContract extends Contract {
             return getTotalPrice() * (1+ 0.0525)/24;
         }
     }
+
+    public String toFileString(){
+        Vehicle vehicle = getVehicleSold();
+        return "SALE|" + getDate() + "|" +
+                getCustomerName() + "|" +
+                getCustomerEmail() + "|" +
+                vehicle.getVin() + "|" +
+                vehicle.getYear() + "|" +
+                vehicle.getMake() + "|" +
+                vehicle.getModel() + "|" +
+                vehicle.getVehicleType() + "|" +
+                vehicle.getColor() + "|" +
+                vehicle.getOdometer() + "|" +
+                String.format("%.2f", vehicle.getPrice()) + "|" +
+                String.format("%.2f", calculateSalesTax()) + "|" +
+                "100.00|" +  // recording fee
+                String.format("%.2f", processingFee()) + "|" +
+                String.format("%.2f", getTotalPrice()) + "|" +
+                "YES|" + // financed
+                String.format("%.2f", getMonthlyPayment());
+    }
+
 }
