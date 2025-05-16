@@ -48,7 +48,7 @@ public class UserInterface {
         System.out.println("7. Search by Color");
         System.out.println("8. Search by Mileage Range");
         System.out.println("9. Search by Vehicle Type");
-        System.out.println("10. Sell or Lease a vehicle");
+        System.out.println("10. Sell or Finance to lease a vehicle");
         System.out.println("11. View all Contracts");
         System.out.println("0. Save and Exit");
     }
