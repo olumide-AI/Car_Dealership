@@ -134,6 +134,8 @@ public class UserInterface {
         Vehicle newVehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
         this.dealership.addVehicle(newVehicle);
 
+        DealershipFileManager.saveDealership(dealership, filename);
+
         System.out.println("Vehicle added successfully.");
     }
 
@@ -143,6 +145,8 @@ public class UserInterface {
 
         boolean removed = dealership.removeVehicleByVin(vin);
         if (removed) {
+            DealershipFileManager.saveDealership(dealership, filename);
+
             System.out.println("Vehicle removed successfully.");
         } else {
             System.out.println("Vehicle not found.");

@@ -48,7 +48,7 @@ public class DealershipFileManager {
         File file = new File(filename);
         boolean fileExists = file.exists();
 
-        try (FileWriter fileWriter = new FileWriter(file, true)) { // Always append
+        try (FileWriter fileWriter = new FileWriter(file)) { // Always append
 
             // Step 1: Only write dealership header if the file is new
             if (!fileExists) {

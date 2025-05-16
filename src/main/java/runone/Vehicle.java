@@ -98,7 +98,7 @@ public class Vehicle {
     @Override
     public String toString() {
         return String.format(
-                "VIN: %d | %d %s %s | Type: %s | Color: %s | Odometer: %,d miles | Price: $%,.2f",
+                "VIN: %s | %d %s %s | Type: %s | Color: %s | Odometer: %,d miles | Price: $%,.2f",
                 vin, year, make, model, vehicleType, color, odometer, price
         );
     }
