@@ -24,7 +24,7 @@ public class DealershipFileManager {
 
             while ((line = bufferedReader.readLine()) != null){
                 String[] splitEntries = line.split("\\|");
-                int vin = Integer.parseInt(splitEntries[0]);
+                String vin = splitEntries[0];
                 int year = Integer.parseInt(splitEntries[1]);
                 String make = splitEntries[2];
                 String model = splitEntries[3];

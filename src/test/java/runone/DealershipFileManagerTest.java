@@ -50,8 +50,8 @@ public class DealershipFileManagerTest {
     public void testSaveDealershipCreatesCorrectFile() throws IOException {
         // Arrange: Create a dealership and add vehicles
         Dealership dealership = new Dealership("D & B Used Cars", "111 Old Benbrook Rd", "817-555-5555");
-        dealership.addVehicle(new Vehicle(10112, 1993, "Ford", "Explorer", "SUV", "Red", 525123, 995.0));
-        dealership.addVehicle(new Vehicle(37846, 2001, "Ford", "Ranger", "truck", "Yellow", 172544, 1995.0));
+        dealership.addVehicle(new Vehicle("10112", 1993, "Ford", "Explorer", "SUV", "Red", 525123, 995.0));
+        dealership.addVehicle(new Vehicle("37846", 2001, "Ford", "Ranger", "truck", "Yellow", 172544, 1995.0));
 
         String filename = "inventory.csv";
 
