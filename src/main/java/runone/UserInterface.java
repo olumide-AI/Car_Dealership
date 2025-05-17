@@ -355,7 +355,8 @@ public class UserInterface {
         System.out.println("Please enter password below:");
         String adminPassword = scanner.nextLine();
         if(adminPassword.equalsIgnoreCase("123zyx")){
-
+            AdminUserInterface adminUserInterface = new AdminUserInterface();
+            adminUserInterface.display();
         }
         else{
             System.out.println("Wrong password. Access not allowed to this account");
