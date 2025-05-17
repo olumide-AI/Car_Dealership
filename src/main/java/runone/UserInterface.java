@@ -50,6 +50,7 @@ public class UserInterface {
         System.out.println("9. Search by Vehicle Type");
         System.out.println("10. Sell or Finance to lease a vehicle");
         System.out.println("11. View all Contracts");
+        System.out.println("12. Admin command");
         System.out.println("0. Save and Exit");
     }
     private boolean processUserSelection(int choice){
@@ -86,6 +87,9 @@ public class UserInterface {
                 break;
             case 11:
                 displayAllContracts();
+                break;
+            case 12:
+                diplayAdminInterface();
                 break;
             case 0:
                 saveAndExit();
@@ -344,6 +348,17 @@ public class UserInterface {
             System.out.println("Total Price: $" + String.format("%.2f", contract.getTotalPrice()));
             System.out.println("Monthly Payment: $" + String.format("%.2f", contract.getMonthlyPayment()));
             System.out.println();
+        }
+    }
+
+    private void diplayAdminInterface(){
+        System.out.println("Please enter password below:");
+        String adminPassword = scanner.nextLine();
+        if(adminPassword.equalsIgnoreCase("123zyx")){
+
+        }
+        else{
+            System.out.println("Wrong password. Access not allowed to this account");
         }
     }
 

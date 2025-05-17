@@ -8,8 +8,6 @@ public class SalesContractTest {
     public void getMonthPaymentTest(){
         //Arrange
         Vehicle vehicle = new Vehicle("0112ghf", 2023, "Honda", "Accord", "Sedan", "Blue", 300000, 24000);
-
-        //Act
         Dealership dealership = new Dealership("olumide", "12 bunk rd", "303093933");
         dealership.addVehicle(vehicle);
         Contract contract = new SalesContract("2025-03-19", "Maaike", "ma@gmail.com", vehicle, dealership.getAllVehicles(), 0);
