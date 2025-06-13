@@ -1,4 +1,4 @@
-package runone;
+package model;
 
 public class Vehicle {
     //Fields

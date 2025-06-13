@@ -1,7 +1,9 @@
 package runone;
 
+import model.Dealership;
+import model.Vehicle;
+
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DealershipFileManager {

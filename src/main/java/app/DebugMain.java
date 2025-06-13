@@ -1,4 +1,8 @@
-package runone;
+package app;
+
+import model.Dealership;
+import model.Vehicle;
+import runone.DealershipFileManager;
 
 public class DebugMain {
     public static void main(String[] args) {

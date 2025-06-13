@@ -1,4 +1,12 @@
-package runone;
+package controller;
+
+import logic.LeaseContract;
+import logic.SalesContract;
+import model.Contract;
+import model.Dealership;
+import model.Vehicle;
+import runone.ContractDataManager;
+import runone.DealershipFileManager;
 
 import java.util.List;
 import java.util.Scanner;

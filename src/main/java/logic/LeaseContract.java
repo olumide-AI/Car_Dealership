@@ -1,8 +1,11 @@
-package runone;
+package logic;
+
+import model.Contract;
+import model.Vehicle;
 
 import java.util.List;
 
-public class LeaseContract extends Contract{
+public class LeaseContract extends Contract {
     private static final double LEASE_FEE = 0.07;
     private static final double EXPECTED_ENDING_VALUE = 0.50;
 

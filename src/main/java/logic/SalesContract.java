@@ -1,4 +1,7 @@
-package runone;
+package logic;
+
+import model.Contract;
+import model.Vehicle;
 
 import java.util.List;
 

@@ -1,5 +1,10 @@
 package runone;
 
+import logic.LeaseContract;
+import logic.SalesContract;
+import model.Contract;
+import model.Vehicle;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
